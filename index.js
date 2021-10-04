@@ -36,27 +36,27 @@ yargs(hideBin(process.argv))
 		command: "add",
 		desc: "Incremet date",
 		handler: (argv) => {
-			argv.day == 1 && console.log(getNewDate(new Date(nowDate.setDate(date + arg))));
-			argv.month == 1 && console.log(getNewDate(new Date(nowDate.setMonth(month + arg))));
-			argv.year == 1 && console.log(getNewDate(new Date(nowDate.setFullYear(year + arg))));
+			argv.day && console.log(getNewDate(new Date(nowDate.setDate(date + arg))));
+			argv.month && console.log(getNewDate(new Date(nowDate.setMonth(month + arg))));
+			argv.year && console.log(getNewDate(new Date(nowDate.setFullYear(year + arg))));
 		},
 	})
 	.command({
 		command: "sub",
 		desc: "Decremet date",
 		handler: (argv) => {
-			argv.day == 1 && console.log(getNewDate(new Date(nowDate.setDate(date - arg))));
-			argv.month == 1 && console.log(getNewDate(new Date(nowDate.setMonth(month - arg))));
-			argv.year == 1 && console.log(getNewDate(new Date(nowDate.setFullYear(year - arg))));
+			argv.day && console.log(getNewDate(new Date(nowDate.setDate(date - arg))));
+			argv.month && console.log(getNewDate(new Date(nowDate.setMonth(month - arg))));
+			argv.year && console.log(getNewDate(new Date(nowDate.setFullYear(year - arg))));
 		},
 	})
 	.command({
 		command: "$0",
 		desc: "Show current date",
 		handler: (argv) => {
-			argv.day == 1 && console.log(date);
-			argv.month == 1 && console.log(months[month]);
-			argv.year == 1 && console.log(year);
+			argv.day && console.log(date);
+			argv.month && console.log(months[month]);
+			argv.year && console.log(year);
 			if (!argv.day && !argv.month && !argv.year) {
 				console.log(getNewDate(nowDate));
 			}
