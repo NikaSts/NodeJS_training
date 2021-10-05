@@ -1,103 +1,61 @@
 #!/usr/bin/env node
 
 const yargs = require("yargs/yargs");
-const {
-	hideBin
-} = require("yargs/helpers");
+const { hideBin } = require("yargs/helpers");
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const nowDate = new Date(Date.now());
-const time = nowDate.toLocaleTimeString();
-const date = nowDate.getDate();
-const month = nowDate.getMonth();
-const year = nowDate.getFullYear();
-const options = {
-	day: {
-		alias: "d",
-		describe: "Get day",
-		// type: "number",
-		// default: 0,
-	},
-	month: {
-		alias: "m",
-		describe: "Get month",
-	},
-	year: {
-		alias: "y",
-		describe: "Get year",
-	},
-};
-const getNewDate = (date) => {
+const nowDay = nowDate.getDate();
+const nowMonth = nowDate.getMonth();
+const nowYear = nowDate.getFullYear();
+const formatDate = (date) => {
 	return `The ${date.getDate()} of ${months[date.getMonth()]} ${date.getFullYear()}, ${date.toLocaleTimeString()}`;
 };
+const setNewDate = (argv, dir) => {
+	const { day, month, year } = argv;
+	day && console.log(formatDate(new Date(nowDate.setDate(nowDay + day * dir))));
+	month && console.log(formatDate(new Date(nowDate.setMonth(nowMonth + month * dir))));
+	year && console.log(formatDate(new Date(nowDate.setFullYear(nowYear + year * dir))));
+}
 yargs(hideBin(process.argv))
-	.options(options)
+	.options({
+		day: {
+			alias: "d",
+			describe: "Get day",
+		},
+		month: {
+			alias: "m",
+			describe: "Get month",
+		},
+		year: {
+			alias: "y",
+			describe: "Get year",
+		},
+	})
 	.command({
 		command: "add",
 		desc: "Incremet date",
 		handler: (argv) => {
-			argv.day && console.log(getNewDate(new Date(nowDate.setDate(date + arg))));
-			argv.month && console.log(getNewDate(new Date(nowDate.setMonth(month + arg))));
-			argv.year && console.log(getNewDate(new Date(nowDate.setFullYear(year + arg))));
-		},
+			setNewDate(argv, 1);
+		}
 	})
 	.command({
 		command: "sub",
 		desc: "Decremet date",
 		handler: (argv) => {
-			argv.day && console.log(getNewDate(new Date(nowDate.setDate(date - arg))));
-			argv.month && console.log(getNewDate(new Date(nowDate.setMonth(month - arg))));
-			argv.year && console.log(getNewDate(new Date(nowDate.setFullYear(year - arg))));
+			setNewDate(argv, -1);
 		},
 	})
 	.command({
 		command: "$0",
 		desc: "Show current date",
 		handler: (argv) => {
-			argv.day && console.log(date);
-			argv.month && console.log(months[month]);
-			argv.year && console.log(year);
+			argv.day && console.log(nowDay);
+			argv.month && console.log(months[nowMonth]);
+			argv.year && console.log(nowYear);
 			if (!argv.day && !argv.month && !argv.year) {
-				console.log(getNewDate(nowDate));
+				console.log(formatDate(nowDate));
 			}
 		},
 	})
 	.parse();
-
-//   .command("add", "Incremet date", function (yargs) {
-//     return yargs
-//       .option("day", {
-//         coerce: (arg) => arg && console.log(getNewDate(new Date(nowDate.setDate(date + arg)))),
-//       })
-//       .option("month", {
-//         coerce: (arg) => arg && console.log(getNewDate(new Date(nowDate.setMonth(month + arg)))),
-//       })
-//       .option("year", {
-//         coerce: (arg) => arg && console.log(getNewDate(new Date(nowDate.setFullYear(year + arg)))),
-//       });
-//   })
-//   .command("sub", "Decremet date", function (yargs) {
-//     return yargs
-//       .option("day", {
-//         coerce: (arg) => arg && console.log(getNewDate(new Date(nowDate.setDate(date - arg)))),
-//       })
-//       .option("month", {
-//         coerce: (arg) => arg && console.log(getNewDate(new Date(nowDate.setMonth(month - arg)))),
-//       })
-//       .option("year", {
-//         coerce: (arg) => arg && console.log(getNewDate(new Date(nowDate.setFullYear(year - arg)))),
-//       });
-//   })
-//   .command("$0", "Show current date", function (yargs) {
-//     return yargs
-//       .option("day", {
-//         coerce: (arg) => arg && console.log(date),
-//       })
-//       .option("month", {
-//         coerce: (arg) => arg && console.log(month),
-//       })
-//       .option("year", {
-//         coerce: (arg) => arg && console.log(year),
-//       });
-//   })
-//   .parse()
