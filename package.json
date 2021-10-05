@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": true,
   "bin": {
-    "current": "./index.js"
+    "current": "./index.js",
+    "guess": "./guess.js"
   },
   "dependencies": {
     "yargs": "^17.1.1"
