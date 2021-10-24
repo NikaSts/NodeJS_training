@@ -1,0 +1,14 @@
+{
+	"name": "guess-number",
+	"version": "1.0.0",
+	"description": "",
+	"main": "guess.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"bin": {
+		"guess": "./index.js"
+	},
+	"author": "",
+	"license": "ISC"
+}
