@@ -2,7 +2,7 @@
 	"name": "guess-number",
 	"version": "1.0.0",
 	"description": "",
-	"main": "guess.js",
+	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -10,5 +10,8 @@
 		"guess": "./index.js"
 	},
 	"author": "",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"yargs": "^17.2.1"
+	}
 }
