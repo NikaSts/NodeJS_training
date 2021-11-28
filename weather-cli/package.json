@@ -1,0 +1,29 @@
+{
+  "name": "weather-cli",
+  "version": "1.0.0",
+  "description": "Nodejs training CLI for getting weather",
+  "main": "weather.js",
+  "type": "module",
+  "bin": {
+    "weather": "./weather.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "weather"
+  ],
+  "author": "NikaSts",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NikaSts/NodeJS_training/weather-cli"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "chalk": "^5.0.0",
+    "dedent-js": "^1.0.1",
+    "yargs": "^17.2.1"
+  }
+}
