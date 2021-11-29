@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import { getArgs } from './helpers/args.js';
+import { getWeather } from './services/api.service.js';
 import { printError, printHelp, printSuccess } from './services/log.service.js';
-import { saveKeyValue } from './services/storage.service.js';
+import { saveKeyValue, STORAGE_KEY } from './services/storage.service.js';
 
 const saveToken = async (token) => {
 	try {
@@ -9,7 +10,7 @@ const saveToken = async (token) => {
 			throw new Error('no token provided')
 		}
 
-		await saveKeyValue('token', token);
+		await saveKeyValue(STORAGE_KEY.token, token);
 		printSuccess('Token was successfully saved');
 	} catch (e) {
 		printError(e.message);
@@ -28,6 +29,8 @@ const initCLI = () => {
 	if (args.t) {
 		return saveToken(args.t)
 	}
+
+	getWeather('Rome,it');
 }
 
 
