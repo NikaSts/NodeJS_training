@@ -19,3 +19,12 @@ export const printHelp = () => {
 		-t [API-KEY] save the token`)
 	);
 }
+
+export const printWeather = (weather) => {
+	console.log(
+		dedent(`${chalk.bgMagenta('WEATHER')} in ${weather?.name}:
+		${weather?.weather[0].description}
+		Temperature: ${Math.round(weather?.main.temp)}C
+		Humidity: ${weather?.main.humidity}%`)
+	);
+}
